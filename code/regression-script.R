@@ -8,7 +8,7 @@ intercept = modelInfo$coefficients[1]
 slope = modelInfo$coefficients[2]
 
 # Output the object
-sink('data/regression-script.R')
+sink('data/regression.rData')
 fit
 sink()
 
