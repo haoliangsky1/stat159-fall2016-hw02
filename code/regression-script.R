@@ -1,6 +1,8 @@
 # Build the model
-setwd("~/Desktop/Fall_2016/Stat159/stat159-fall2016-hw02")
-advertising = read.csv('data/Advertising.csv')
+#setwd("~/Desktop/Fall_2016/Stat159/stat159-fall2016-hw02")
+#advertising = read.csv('data/Advertising.csv')
+args = commandArgs(trailingOnly =TRUE)
+advertising = read.csv(args[1], header = TRUE)
 fit = lm(advertising$Sales~advertising$TV, data = advertising)
 modelInfo = summary(fit)
 # Extract the coefficients

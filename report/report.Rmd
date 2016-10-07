@@ -13,7 +13,7 @@ In this report we reproduce the main results displayed in section 3.1 \text{Simp
 
 The overall goal is to provide advice on how to improve sales of the particular product. More specifically, the idea is to determine whether there is an association between advertising and sales, and if so, develop an accurate model that can be used to predict sales on the basis of the three media budgets.
 ```{r, echo=FALSE, message=FALSE}
-setwd("~/Desktop/Fall_2016/Stat159/stat159-fall2016-hw02")
+#setwd("~/Desktop/Fall_2016/Stat159/stat159-fall2016-hw02")
 library(xtable)
 options(xtable.comment = FALSE)
 ```
@@ -68,9 +68,14 @@ We can see that the Residual Sum of Squares and r squared for this model is rela
 
 And we plot the scattor plot with the fitted regression line.
 
-![](../images/scatterplot-tv-sales.png)
+
+```{r, out.width = "200px", echo=FALSE,message=FALSE, fig.align ='center'}
+knitr::include_graphics("../images/scatterplot-tv-sales.png")
+```
+
 
 As we can see from the scattor plot above, the regression line approxiates most the the relation between *TV* and *Sales*.
+
 
 
 \section{Conclusions}
