@@ -1,0 +1,6 @@
+      Min. 1st Qu. Median   Mean 3rd Qu.  Max.
+TV     0.7   74.38  149.8 147.00   218.8 296.4
+Sales  1.6   10.38   12.9  14.02    17.4  27.0
+         Variance Standard Deviation
+TV    10831.29867         104.073525
+Sales    27.22185           5.217457
