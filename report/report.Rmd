@@ -1,5 +1,5 @@
 ---
-title: "Simple Regressio Analysis"
+title: "Simple Regression Analysis"
 author: "Liang Hao"
 date: "10/7/2016"
 output: pdf_document
@@ -7,11 +7,12 @@ output: pdf_document
 
 \section{Abstract}
 
-In this report we reproduce the main results displayed in section 3.1 \text{Simple Linear Regression} (chapter 3) of the book *An Introduction to Statistical Learning*.
+In this report we reproduce the main results displayed in section 3.1 **Simple Linear Regression** (chapter 3) of the book *An Introduction to Statistical Learning*.
 
 \section{Introduction}
 
-The overall goal is to provide advice on how to improve sales of the particular product. More specifically, the idea is to determine whether there is an association between advertising and sales, and if so, develop an accurate model that can be used to predict sales on the basis of the three media budgets.
+The overall goal of this analysis is to provide advice on how to improve sales of the particular product given the current information. More specifically, the idea is to determine whether there is an association between advertising and sales, and if so, develop an accurate model that can be used to predict sales on the basis of the three media budgets. For this analysis specifically, we primarily consider using simple linear regression.
+
 ```{r, echo=FALSE, message=FALSE}
 #setwd("~/Desktop/Fall_2016/Stat159/stat159-fall2016-hw02")
 library(xtable)
@@ -27,17 +28,30 @@ load('../data/eda-output.txt')
 xtable(bothSummary, caption = 'Summary Statistics')
 ```
 
-From the table above, the relation between the two variables are not very clear yet. We then explore with the following methodology.
+From the table above, the relation between the two variables are not very clear yet. We may also have a look at the histograms of their distribution:
+
+```{r, out.width = "150px", echo=FALSE,message=FALSE, fig.align ='center', eval = T, split=TRUE}
+knitr::include_graphics("../images/histogram-tv.png")
+par(mfrow=c(1,1))
+```
+
+From the *Histogram of TV* above, see that the frequencies over the range are approximately even, with *200-250* highest and *250-300* lowest. We then inspect the distribution of *Sales*:
+
+
+```{r, out.width = "150px", echo=FALSE,message=FALSE, fig.align ='center', eval = T, split=TRUE}
+knitr::include_graphics("../images/histogram-sales.png")
+par(mfrow=c(1,1))
+```
+
+From the *Histogram of Sales* above, we can see an approximately bell shape distribution, with *10-20* the highest, which we could infer from the summary statistics above. We then explore with the following methodology.
 
 \section{Methodology}
 
-We consider one media from the data set, *TV*, and study its relationship with *Sales*. For this purpose, we use a simple linear model:
+We consider one media from the data set, *TV*, and study its relationship with *Sales*. The null hypothesis here is that the *TV* would not have an effect on *Sales*, and the alternative hypothesis is that *TV* does have an effect on *Sales*. For this purpose, we use a simple linear model:
 
 $$Sales = \beta_{0} + \beta_{1}TV$$
 
-To estimate the coefficients $\beta_{0}$ and $\beta_{1}$ we fit a regression model via the least squares criterion.
-
-The null hypothesis here is that the *TV* would not have an effect on *Sales*, and the alternative hypothesis is that *TV* does have an effect on *Sales*.
+To estimate the coefficients $\beta_{0}$ and $\beta_{1}$, we fit a regression model via the least squares criterion. If the relation did not exist, we would expect $\beta_{1}$ would be close to 0, or the distribution of *Sales* is relatively independent of the distribution of *TV*.
 
 
 \section{Results}
@@ -50,9 +64,13 @@ modelInfo = summary(fit)
 xtable(modelInfo$coefficients, caption = "Information about Regression Coefficients")
 ```
 
-From the table above we can extract the intercept and slope for future graphing. And we see that the p values for both intercept and TV returned by this simple linear regression model are both smaller than 0.05, giving us enough evidence for the alternative hypothesis that these two factors do make a difference.
+From the table above we can extract the intercept and slope for future graphing. And we see that the p values for both intercept and TV returned by this simple linear regression model are both smaller than 0.05, showing statistical significance. 
 
-More information about the least squares model is given in the table below:
+Also, the *Standard error* of the two parameters are significantly smaller than the actual values of the parameters.
+
+Therfore, we may have enough evidence against the null hypothesis that the two factors are not related. *TV* does have an effect on *Sales*.
+
+Futhermore, we can dig deeper into the parameters of the least squares model. The table below shows information about a few important indicators when evaluating a model:
 
 ```{r, echo=FALSE, results='asis', warning=FALSE}
 table2 = matrix(nrow =3, ncol= 2)
@@ -68,8 +86,7 @@ We can see that the Residual Sum of Squares and r squared for this model is rela
 
 And we plot the scattor plot with the fitted regression line.
 
-
-```{r, out.width = "200px", echo=FALSE,message=FALSE, fig.align ='center'}
+```{r, out.width = "300px", echo=FALSE,message=FALSE, fig.align ='center'}
 knitr::include_graphics("../images/scatterplot-tv-sales.png")
 ```
 
