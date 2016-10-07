@@ -25,6 +25,7 @@ colnames(bothSummary) = names(tvSummary)
 sink('data/eda-output.txt')
 bothSummary
 sink()
+save(bothSummary, file = 'data/eda-output.txt')
 
 
 # Graph Output

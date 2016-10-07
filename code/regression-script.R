@@ -8,9 +8,10 @@ intercept = modelInfo$coefficients[1]
 slope = modelInfo$coefficients[2]
 
 # Output the object
-sink('data/regression.rData')
+sink('data/regression.rData', append = TRUE, split = T)
 fit
 sink()
+save(fit, file = 'data/regression.rData')
 
 # Output the graph
 pdf('images/scatterplot-tv-sales.pdf')
